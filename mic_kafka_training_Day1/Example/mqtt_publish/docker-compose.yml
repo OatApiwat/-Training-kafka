@@ -1,0 +1,12 @@
+version: '3.1'
+services:
+  mqtt_pulish:
+    build: .
+    image: mic/mqtt_publish:1.0.0
+    container_name: mqtt_pulish
+    environment:
+      - TZ=Asia/Bangkok
+    privileged: true
+    volumes:
+      - ./.env:/app/.env
+    # restart: always
