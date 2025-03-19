@@ -1,0 +1,14 @@
+version: '3'
+services:
+  kafka_producer:
+    build: .
+    image: mic/kafka_producer:1.0.0
+    container_name: kafka_producer
+    environment:
+      - TZ=Asia/Bangkok
+
+    networks:
+      - kafka_network
+networks:
+  kafka_network:
+    driver: bridge
