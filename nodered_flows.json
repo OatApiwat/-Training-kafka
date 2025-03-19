@@ -1,0 +1,516 @@
+[
+    {
+        "id": "f6f2187d.f17ca8",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "16a1cf20cc5f8e6b",
+        "type": "mqtt out",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "6c3de2961f80f7fa",
+        "x": 530,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "2eab1dde50b246dd",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "data",
+        "props": [],
+        "repeat": "2",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "5",
+        "topic": "",
+        "x": 110,
+        "y": 40,
+        "wires": [
+            [
+                "16d9f280d7ece04b"
+            ]
+        ]
+    },
+    {
+        "id": "b39b26b91598bedb",
+        "type": "mqtt in",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "topic": "data/mic/demo1/a1",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "6c3de2961f80f7fa",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 770,
+        "y": 40,
+        "wires": [
+            [
+                "d4cb9551123b9f2e"
+            ]
+        ]
+    },
+    {
+        "id": "d4cb9551123b9f2e",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 1",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 940,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "16d9f280d7ece04b",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "data/mic/demo1/a1",
+        "func": "var count = context.get(\"count\") || 1;\nvar topic = \"data/mic/demo1/a1\"\nif (msg.reset === 0) {\n    count = 1; // Reset count if msg.reset is 0\n} else {\n    var data1 = count;\n    var data2 = count;\n    var data3 = count;\n    var data4 = count;\n    var data5 = count;\n    var data6 = count;\n    var data7 = count;\n    var data8 = count;\n    var data9 = count;\n    var data10 = count;\n\n    var newMsg = {\n        payload: { data1, data2, data3, data4, data5, data6, data7, data8, data9, data10 },\n        topic: topic\n    };\n    count++;\n\n    context.set(\"count\", count); // Store updated count\n    return newMsg; // Send message only when not resetting\n}\n\ncontext.set(\"count\", count); // Store reset count\nreturn null; // Don't send message when resetting\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 40,
+        "wires": [
+            [
+                "16a1cf20cc5f8e6b"
+            ]
+        ]
+    },
+    {
+        "id": "e4e18f48b87d2574",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "reset",
+        "props": [
+            {
+                "p": "reset",
+                "v": "0",
+                "vt": "num"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 110,
+        "y": 100,
+        "wires": [
+            [
+                "16d9f280d7ece04b"
+            ]
+        ]
+    },
+    {
+        "id": "f3b66ea01ccf6747",
+        "type": "mqtt out",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "6c3de2961f80f7fa",
+        "x": 530,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "152ab9dd2fb36f45",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "status",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "5",
+        "topic": "",
+        "x": 110,
+        "y": 360,
+        "wires": [
+            [
+                "9a02d5a0c95e8fb6"
+            ]
+        ]
+    },
+    {
+        "id": "2b3c83350eba3810",
+        "type": "mqtt in",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "topic": "status/mic/demo1/a1",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "6c3de2961f80f7fa",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 770,
+        "y": 360,
+        "wires": [
+            [
+                "dc1042c2334a2e1e"
+            ]
+        ]
+    },
+    {
+        "id": "dc1042c2334a2e1e",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 940,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "9a02d5a0c95e8fb6",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "status/mic/demo1/a1",
+        "func": "var count = context.get(\"count\") || 1;\nvar topic = \"status/mic/demo1/a1\"\nif (msg.reset === 0) {\n    count = 1; // Reset count if msg.reset is 0\n} else {\n    var status = \"status\"+count;\n \n\n    var newMsg = {\n        payload: status,\n        topic: topic\n    };\n    count++;\n\n    context.set(\"count\", count); // Store updated count\n    return newMsg; // Send message only when not resetting\n}\n\ncontext.set(\"count\", count); // Store reset count\nreturn null; // Don't send message when resetting\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 360,
+        "wires": [
+            [
+                "f3b66ea01ccf6747"
+            ]
+        ]
+    },
+    {
+        "id": "31045f6d8383ddfd",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "reset",
+        "props": [
+            {
+                "p": "reset",
+                "v": "0",
+                "vt": "num"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 110,
+        "y": 420,
+        "wires": [
+            [
+                "9a02d5a0c95e8fb6"
+            ]
+        ]
+    },
+    {
+        "id": "3da0aa55024341aa",
+        "type": "mqtt out",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "6c3de2961f80f7fa",
+        "x": 530,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "9e9fe3216e42b58a",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "alarm",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "5",
+        "topic": "",
+        "x": 110,
+        "y": 480,
+        "wires": [
+            [
+                "b91f39964770a0b2"
+            ]
+        ]
+    },
+    {
+        "id": "9592ffb232d29a37",
+        "type": "mqtt in",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "topic": "alarm/mic/demo1/a1",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "6c3de2961f80f7fa",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 770,
+        "y": 480,
+        "wires": [
+            [
+                "dff17e14cff561ff"
+            ]
+        ]
+    },
+    {
+        "id": "dff17e14cff561ff",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 940,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "b91f39964770a0b2",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "alarm/mic/demo1/a1",
+        "func": "var count = context.get(\"count\") || 1;\nvar topic = \"alarm/mic/demo1/a1\"\nif (msg.reset === 0) {\n    count = 1; // Reset count if msg.reset is 0\n} else {\n    var status = \"alarm\"+count;\n \n\n    var newMsg = {\n        payload: status,\n        topic: topic\n    };\n    count++;\n\n    context.set(\"count\", count); // Store updated count\n    return newMsg; // Send message only when not resetting\n}\n\ncontext.set(\"count\", count); // Store reset count\nreturn null; // Don't send message when resetting\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 480,
+        "wires": [
+            [
+                "3da0aa55024341aa"
+            ]
+        ]
+    },
+    {
+        "id": "234bd315a6357d44",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "reset",
+        "props": [
+            {
+                "p": "reset",
+                "v": "0",
+                "vt": "num"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 110,
+        "y": 540,
+        "wires": [
+            [
+                "b91f39964770a0b2"
+            ]
+        ]
+    },
+    {
+        "id": "0d8767f992c5efeb",
+        "type": "mqtt out",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "6c3de2961f80f7fa",
+        "x": 530,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "6028d6d84e12b5a7",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "data",
+        "props": [],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "5",
+        "topic": "",
+        "x": 110,
+        "y": 160,
+        "wires": [
+            [
+                "c7ccfa51a870c87d"
+            ]
+        ]
+    },
+    {
+        "id": "5ce410bda45a4695",
+        "type": "mqtt in",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "topic": "data/mic/demo2/a1",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "6c3de2961f80f7fa",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 770,
+        "y": 160,
+        "wires": [
+            [
+                "6322e3a1818e6058"
+            ]
+        ]
+    },
+    {
+        "id": "6322e3a1818e6058",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 4",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 940,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "c7ccfa51a870c87d",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "data/mic/demo2/a1",
+        "func": "var count = context.get(\"count\") || 1;\nvar topic = \"data/mic/demo2/a1\"\nif (msg.reset === 0) {\n    count = 1; // Reset count if msg.reset is 0\n} else {\n    var data1 = count;\n    var data2 = count;\n    var data3 = count;\n    var data4 = count;\n    var data5 = count;\n    var data6 = count;\n    var data7 = count;\n    var data8 = count;\n    var data9 = count;\n    var data10 = count;\n\n    var newMsg = {\n        payload: { data1, data2, data3, data4, data5, data6, data7, data8, data9, data10 },\n        topic: topic\n    };\n    count++;\n\n    context.set(\"count\", count); // Store updated count\n    return newMsg; // Send message only when not resetting\n}\n\ncontext.set(\"count\", count); // Store reset count\nreturn null; // Don't send message when resetting\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 160,
+        "wires": [
+            [
+                "0d8767f992c5efeb"
+            ]
+        ]
+    },
+    {
+        "id": "8e68ba3c7bf61c9f",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "reset",
+        "props": [
+            {
+                "p": "reset",
+                "v": "0",
+                "vt": "num"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 110,
+        "y": 220,
+        "wires": [
+            [
+                "c7ccfa51a870c87d"
+            ]
+        ]
+    },
+    {
+        "id": "6c3de2961f80f7fa",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "192.168.0.179",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    }
+]
